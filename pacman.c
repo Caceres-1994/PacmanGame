@@ -112,23 +112,26 @@ void explodePilula(int x, int y){
 	int linhas[2] = {x, x};
 	int colunas[2] = {y, y};
 
-	for(int i=1;i<=4;i++){
+	for(int i=1;i<=3;i++){
 		if((a.matriz[(x)][colunas[0]-1])==FANTASMA){
 			a.matriz[(x)][(colunas[0])-1] = VAZIO;
-			colunas[0]--;
-		}
+		}else if((a.matriz[(x)][colunas[0]-1])!=PAREDE_VERTICAL
+		&&(a.matriz[(x)][colunas[0]-1])!=PAREDE_HORIZONTAL)colunas[0]--;
+
 		if((a.matriz[(x)][colunas[1]+1])==FANTASMA){
 			a.matriz[(x)][(colunas[1])+1] = VAZIO;
-			colunas[1]++;
-		}
+		}else if((a.matriz[(x)][colunas[1]+1])!=PAREDE_VERTICAL
+		&&(a.matriz[(x)][colunas[1]+1])!=PAREDE_HORIZONTAL)colunas[1]++;
+
 		if((a.matriz[linhas[0]-1][y])==FANTASMA){
 			a.matriz[(linhas[0]-1)][(y)] = VAZIO;
-			linhas[0]--;
-		}
-		if((a.matriz[(linhas[1]+i)][y])==FANTASMA){
-			a.matriz[linhas[1]+i][(y)] = VAZIO;
-			linhas[1]++;
-		}
+		}else if((a.matriz[linhas[0]-1][y])!=PAREDE_HORIZONTAL
+		&&(a.matriz[linhas[0]-1][y])!=PAREDE_VERTICAL)linhas[0]--;
+
+		if((a.matriz[(linhas[1]+1)][y])==FANTASMA){
+			a.matriz[(linhas[1]+1)][(y)] = VAZIO;
+		}else if((a.matriz[(linhas[1]+1)][y])!=PAREDE_HORIZONTAL
+		&&(a.matriz[(linhas[1]+1)][y])!=PAREDE_VERTICAL)linhas[1]++;
 	}
 
 	encontrarFantasma(&a);
